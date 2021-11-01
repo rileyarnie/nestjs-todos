@@ -7,11 +7,11 @@ import { UsersService } from './users.service';
 
 // @UseInterceptors(new SerializeInterceptor(UserDto))
 @Serialize(UserDto)
-@Controller('auth')
+@Controller()
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Post('register')
+  @Post('auth/register')
   registerUsers(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
