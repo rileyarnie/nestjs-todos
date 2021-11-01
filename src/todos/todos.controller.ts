@@ -6,7 +6,9 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodosService } from './todos.service';
 
@@ -19,6 +21,7 @@ export class TodosController {
     return this.todosService.createTodo(createTodoDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   getTodos() {
     return this.todosService.getTodos();
